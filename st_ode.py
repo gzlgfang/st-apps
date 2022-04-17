@@ -4,16 +4,16 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy import optimize as op
 from scipy.integrate import odeint
-import fipy as fp
-from fipy import (
-        CellVariable,
-        Grid2D,
-        Viewer,
-        TransientTerm,
-        DiffusionTerm,
-        ImplicitSourceTerm,
-        PowerLawConvectionTerm,
-)
+# import fipy as fp
+# from fipy import (
+#         CellVariable,
+#         Grid2D,
+#         Viewer,
+#         TransientTerm,
+#         DiffusionTerm,
+#         ImplicitSourceTerm,
+#         PowerLawConvectionTerm,
+# )
 mpl.rcParams["font.sans-serif"] = ["SimHei"]  # 保证显示中文字
 mpl.rcParams["axes.unicode_minus"] = False  # 保证负号显示
 mpl.rcParams["font.size"] = 12  # 设置字体大小
