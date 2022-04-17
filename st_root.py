@@ -9,11 +9,11 @@ mpl.rcParams['ytick.right']=True
 mpl.rcParams['xtick.top']=True
 mpl.rcParams['xtick.direction'] = 'in'#坐标轴上的短线朝内，默认朝外
 mpl.rcParams['ytick.direction'] = 'in'
+#https://share.streamlit.io/gzlgfang/st-apps/main/st_root.py
 
-
-st.markdown("二分法求解超越方程零根")
+st.title("二分法求解超越方程零根")
 st.latex("a_0+a_1*x^{n_1}+ a_2*x^{n_2}+a_3*x^{n_3}+a_4*x* sinx +a_5*x^2*cosx")
-st.write("系数输入")
+st.header("系数输入")
 col1, col2, col3  = st.columns(3)
 with col1:
   a0= st.number_input("a0", value=-5.0)
@@ -51,19 +51,19 @@ fig=plt.figure(figsize=(16, 8), num="绘制函数曲线")
 x = np.linspace(a, b, 300)
 y = f(x)
 plt.plot(x, y, lw=2, color="b", label="y")  # 绘制函数曲线
-plt.xlabel("变量，x", fontsize=18)
-plt.ylabel("函数值，f(x)", labelpad=5, fontsize=18)
+plt.xlabel("Variable，x", fontsize=18)
+plt.ylabel("f(x)", labelpad=5, fontsize=18)
 plt.grid(which='both', axis='both', color='r', linestyle=':', linewidth=1)
 plt.xlim(a, b)
 plt.legend()
-plt.title("函数图")
+plt.title("Function graph")
 st.pyplot(fig)
 
 
 
 
 
-h=0.2 #搜索空间增量，不要太大，否则会漏根
+h=0.1 #搜索空间增量，不要太大，否则会漏根
 def binarySolver(f, a, b, eps):
     """
     f: function

@@ -4,7 +4,18 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy import optimize as op
 from scipy.integrate import odeint
-
+from fipy.tools import numerix
+import fipy as fp
+from fipy import (
+        CellVariable,
+        Grid2D,
+        Viewer,
+        TransientTerm,
+        DiffusionTerm,
+        ImplicitSourceTerm,
+        PowerLawConvectionTerm,
+)
+from fipy.tools import numerix
 mpl.rcParams["font.sans-serif"] = ["SimHei"]  # 保证显示中文字
 mpl.rcParams["axes.unicode_minus"] = False  # 保证负号显示
 mpl.rcParams["font.size"] = 12  # 设置字体大小
@@ -126,7 +137,7 @@ elif add_selectbox == "一次微分方程2":
     st.pyplot(fig)
 
 elif add_selectbox == "高阶微分方程":
-    st.latex("微分方程: d^{2}y/dx=a_0+ a_1*sin(b_0x)+a_2*x^{b_1}")
+    st.latex("微分方程: d^{2}y/dx^{2}=a_0+ a_1*sin(b_0x)+a_2*x^{b_1}")
     st.latex("+a_3*y^{b_2}+c_0*e^{c_1y}+c_2*dy/dx+d_0*e^{d_1x}")
     st.write("参数设置:")
     col1, col2, col3 = st.columns(3)
@@ -218,8 +229,8 @@ elif add_selectbox == "高阶微分方程":
     plt.grid(True)
     st.pyplot(fig)
 elif add_selectbox == "两应变量微分方程组":
-    st.latex("微分方程u: dy1/dx=a_0*y_1(1-y_1/a_1)-a_2*y_1y_2")
-    st.latex("微分方程v: dy2/dx=b_0*y_2(1-y_2/b_1)-b_2*y_1y_2")
+    st.latex("微分方程u: dy_1/dx=a_0*y_1(1-y_1/a_1)-a_2*y_1y_2")
+    st.latex("微分方程v: dy_2/dx=b_0*y_2(1-y_2/b_1)-b_2*y_1y_2")
     st.write("参数设置:")
     col1, col2, col3 = st.columns(3)
     with col1:
@@ -268,8 +279,8 @@ elif add_selectbox == "两应变量微分方程组":
     plt.xticks()  # 设置横轴刻度
     plt.xlim(x_s, x_e)  # 设置x轴的上下限
     # plt.ylim(0,1.6)
-    plt.xlabel("时间", color="blue")  # 设置x轴描述信息
-    plt.ylabel("物种数量，(u，v)", color="red")  # 设置y轴描述信息
+    plt.xlabel("Time", color="blue")  # 设置x轴描述信息
+    plt.ylabel("Number of species,，(u,v)", color="red")  # 设置y轴描述信息
     plt.yticks()  # 设置纵轴刻度
     plt.legend()
     plt.grid(True)
@@ -349,8 +360,8 @@ elif add_selectbox == "四应变量微分方程组":
     )
     plt.legend()
     plt.grid(True)
-    plt.xlabel("反应温度，T(K)")
-    plt.ylabel("物质B浓度，" + "$c_{B}$")
+    plt.xlabel("Reaction Temperature，T(K)")
+    plt.ylabel("Concentration of B ," + "$c_{B}$")
     plt.xticks()
     plt.yticks()
     st.pyplot(fig1)
@@ -361,8 +372,8 @@ elif add_selectbox == "四应变量微分方程组":
     )
     plt.legend()
     plt.grid(True)
-    plt.xlabel("反应温度，T(K)")
-    plt.ylabel("物质B浓度最大时反应时间，s")
+    plt.xlabel("Reaction Temperature,T(K)")
+    plt.ylabel("Reaction time at maximum concentration of substance B,s")
     plt.xticks()
     plt.yticks()
     st.pyplot(fig2)
@@ -380,32 +391,21 @@ elif add_selectbox == "四应变量微分方程组":
     plt.plot(tspan, sol[:, 3], label="$c_{D}$", color="k", linewidth=3.0, linestyle=":")
 
     plt.annotate(
-        f"最高点{MAX_C_B:.5f}",
+        f"Highest point= {MAX_C_B:.5f}",
         xy=(time1, MAX_C_B),
         xytext=(time1 + 1400, MAX_C_B + 0.2),
         arrowprops=dict(arrowstyle="->", color="r", lw=2.5),
     )
     plt.xlim(0, 30000)
     plt.xticks()  # 设置横轴刻度
-    plt.xlabel("时间t,s", color="blue")  # 设置x轴描述信息
-    plt.ylabel("浓度" + r"$c,kmol/m^{3}$", color="red")  # 设置y轴描述信息
+    plt.xlabel("Time,s", color="blue")  # 设置x轴描述信息
+    plt.ylabel("Concentration" + r"$C,kmol/m^{3}$", color="red")  # 设置y轴描述信息
     plt.yticks()  # 设置纵轴刻度
     plt.legend()
     plt.grid(True)
     st.pyplot(fig3)
 
 elif add_selectbox == "偏微分方程1":
-    from fipy import (
-        CellVariable,
-        Grid2D,
-        Viewer,
-        TransientTerm,
-        DiffusionTerm,
-        ImplicitSourceTerm,
-        PowerLawConvectionTerm,
-    )
-    from fipy.tools import numerix
-
     st.latex("偏微分方程:∂u/∂t=D(∂^{2}u/∂x^{2}+∂^{2}u/∂y^{2})+αu+C_1∂u/∂x+C_2∂u/∂y")
     st.write("输入偏微分方程4个参数")
     col1, col2, col3, col4 = st.columns(4)
@@ -480,19 +480,18 @@ elif add_selectbox == "偏微分方程1":
 
 
 elif add_selectbox == "偏微分方程2":
-    from fipy import (
-        CellVariable,
-        Grid2D,
-        Viewer,
-        TransientTerm,
-        DiffusionTerm,
-        ImplicitSourceTerm,
-        PowerLawConvectionTerm,
-    )
-    from fipy.tools import numerix
-    import fipy as fp
+    # from fipy import (
+    #     CellVariable,
+    #     Grid2D,
+    #     Viewer,
+    #     TransientTerm,
+    #     DiffusionTerm,
+    #     ImplicitSourceTerm,
+    #     PowerLawConvectionTerm,
+    # )
+    
 
-    st.latex("偏微分方程:∂u/∂t=D(∂^{2}u/∂x^{2}+∂^{2}u/∂y^{2})+αu+C_1∂u/∂x+C_2∂u/∂y")
+    st.latex("偏微分方程:∂u/∂t=D(∂^{2}u/∂x^{2}+∂^{2}u/∂y^{2}+∂^{2}u/∂z^{2})+αu+C_1∂u/∂x+C_2∂u/∂y")
     st.write("输入偏微分方程4个参数")
     col1, col2, col3, col4 = st.columns(4)
     with col1:
@@ -528,21 +527,22 @@ elif add_selectbox == "偏微分方程2":
     # mesh = Grid2D(dx=dx, dy=dy, nx=nx, ny=ny)
     mesh = fp.Grid3D(dx=dx, dy=dy, dz=dz, nx=nx, ny=ny, nz=nz)
 
-    u = fp.CellVariable(name="solution variable", mesh=mesh, value=0.0)
-    D = 10.0
+    u = fp.CellVariable(name="solution variable", mesh=mesh, value=value)
+    D = D
     # eq =DiffusionTerm(coeff=D)==0
     # TransientTerm()
-    alpha = 100
+    alpha = alpha
     eq = fp.TransientTerm() == fp.DiffusionTerm(coeff=D) + fp.ImplicitSourceTerm(alpha)
-    valueTopLeft = 30
-    valueBottomRight = 100
+    valueTopLeft = V_TL
+    valueBottomRight = V_BR
     X, Y, Z = mesh.faceCenters
     facesTopLeft = (mesh.facesLeft & (Y > 0)) | (mesh.facesTop & (X < L))
     facesBottomRight = (mesh.facesRight & (Y <= L)) | (mesh.facesBottom & (X >= L / 2))
     u.constrain(valueTopLeft, facesTopLeft)
     u.constrain(valueBottomRight, facesBottomRight)
-    timeStepDuration = 10 * 0.9 * dx**2 / (2 * D)
-    steps = 10
+    timeStepDuration =0.001
+    #  10 * 0.9 * dx**2 / (2 * D)
+    steps = steps
     for step in range(steps):
         eq.solve(var=u, dt=timeStepDuration)
         # print(u)
@@ -558,7 +558,8 @@ elif add_selectbox == "偏微分方程2":
     y = np.arange(ny) * dy
 
     X, Y = np.meshgrid(x, y)
-    norm = mpl.colors.Normalize(30, 100)
+    #norm = mpl.colors.Normalize(30, 100)
+    norm = mpl.colors.Normalize(0, max(V_BR, V_TL))
     for i in range(1, 9, 4):
         # for i in range(nz):
         c = ar[:, :, i]
