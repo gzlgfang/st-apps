@@ -746,7 +746,7 @@ elif add_selectbox=="模拟退火算法求解最优邮路":
    with col2:
       test_num = st.number_input("实验次数test_num", value=5,step=1,format="%d")   
    with col3:
-     post_files= st.text_input("邮局及投递点x,y,w数据", value="") 
+     post_files= st.text_input("邮局及投递点x,y,w数据,空为随机数", value="g:/Postal.xlsx") 
   
    T00 = T00  # 初始温度
    T0=T00
@@ -758,10 +758,20 @@ elif add_selectbox=="模拟退火算法求解最优邮路":
       return T0 * q ** x[0] - Tend
    T_num = int(optimize.fsolve(fun, [30]) + 2)  # 计算退火次数
    # 读入城市坐标
-   DF = pd.read_excel(post_files, "Sheet1", na_filter=False, index_col=0)  # 
-   city_x = np.array(DF["x"])  # 数据分配
-   city_y = np.array(DF["y"])
-   w1=np.array(DF["w"])
+   if  post_files=="":
+      n=20  # 确定投递点为20个
+      city_x= np.zeros(n+1)
+      city_y= np.zeros(n+1)
+      w1=np.zeros(n+1)
+      for i in range(n+1):
+         city_x[i]= int(np.random.random() * 50) + 1  # 产生0-50的随机整数
+         city_y[i] = int(np.random.random() * 50) + 1
+         w1[i]=int(np.random.random() * 30) + 1
+   else:
+      DF = pd.read_excel(post_files, "Sheet1", na_filter=False, index_col=0)  # 
+      city_x = np.array(DF["x"])  # 数据分配
+      city_y = np.array(DF["y"])
+      w1=np.array(DF["w"])
    n = len(city_x)-1  # 计算投递点的数目
    w=w1[1:]#读入每个投递点的投递重量,w1[0]为邮局，无投递重量
    TG=sum(w)
@@ -983,7 +993,7 @@ elif add_selectbox=="模拟退火算法求解最优邮路":
    ax.plot(x, y,color="b",label="Objective function value" ,linewidth=2.0, linestyle="--" )
    #plt.xticks(np.linspace(0,test_num,test_num+1,endpoint=True))# 设置横轴刻度
    plt.xlim(1,test_num)# 设置x轴的上下限
-   plt.xlabel('Experiment number',color='blue',size=28)# 设置x轴描述信息
+   plt.xlabel('Experiment number',color='blue')# 设置x轴描述信息
    plt.ylabel("Objective function",color='red')# 设置y轴描述信息,利用r'$x_1$设置下标1
    plt.legend()
    plt.grid(True)
@@ -992,7 +1002,7 @@ elif add_selectbox=="模拟退火算法求解最优邮路":
    num="The optimal path in the sequence experiment"
    fig2=drawpath(LJ, city_zb, num)
    plt.text(25, 25, "Total Length=")
-   plt.text(30, 25, str(int(1000 * opt_JJ[index] )/ 1000))
+   plt.text(35, 25, str(int(1000 * opt_JJ[index] )/ 1000))
    st.pyplot(fig2)
    st.write("列次计算目标函数平均值=",np.mean(opt_JJ))
   
