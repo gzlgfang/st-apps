@@ -55,7 +55,7 @@ if add_selectbox=="遗传算法求解TSP问题":
          city_zb[i, 1] =int(np.random.random() * hight * 100) / 100
       return city_zb
    city_num=st.number_input("输入随机城市数目，随机计算时使用", value=30,step=1,format="%d")
-   city_files=st.text_input("输入具体路径的数据文件,如为空则利用随机数据进行计算",value="g:/city.xlsx")
+   city_files=st.text_input("输入具体路径的数据文件,如为空则利用随机数据进行计算",value="")
    if city_files=="":
       city_zb=city_zb(50, 50, city_num)
       n=city_num
@@ -429,7 +429,7 @@ elif add_selectbox=="遗传算法求解背包问题":
          m_v[1, i] = int(np.random.random() * 100) + 1
       return m_v
      
-   put_files=st.text_input("输入具体物品的重量及价值的数据文件,如为空则利用随机数据进行计算",value="g:/put.xlsx")
+   put_files=st.text_input("输入具体物品的重量及价值的数据文件,如为空则利用随机数据进行计算",value="")
    if put_files=="":
       m_v = mass_value(num)  # 确定物体数目、重量和及价值
       n=num
@@ -746,7 +746,7 @@ elif add_selectbox=="模拟退火算法求解最优邮路":
    with col2:
       test_num = st.number_input("实验次数test_num", value=5,step=1,format="%d")   
    with col3:
-     post_files= st.text_input("邮局及投递点x,y,w数据", value="g:Postal.xlsx") 
+     post_files= st.text_input("邮局及投递点x,y,w数据", value="") 
   
    T00 = T00  # 初始温度
    T0=T00
@@ -1184,7 +1184,7 @@ elif add_selectbox=="蚁群算法求解TSP问题":
       city_num=st.number_input("输入随机城市数目，随机计算时使用", value=30,step=1,format="%d")
    with col2:
       B= st.number_input("是否回起点,是1,否0", value=1,step=1,format="%d") 
-   city_files=st.text_input("输入具体路径的数据文件,如为空则利用随机数据进行计算",value="g:/city.xlsx")
+   city_files=st.text_input("输入具体路径的数据文件,如为空则利用随机数据进行计算",value="")
    if city_files=="":
       city_zb=city_zb(50, 50, city_num)
       n=city_num

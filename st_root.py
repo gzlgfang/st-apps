@@ -51,7 +51,7 @@ fig=plt.figure(figsize=(16, 8), num="绘制函数曲线")
 x = np.linspace(a, b, 300)
 y = f(x)
 plt.plot(x, y, lw=2, color="b", label="y")  # 绘制函数曲线
-plt.xlabel("Variable，x", fontsize=18)
+plt.xlabel("Variable,x", fontsize=18)
 plt.ylabel("f(x)", labelpad=5, fontsize=18)
 plt.grid(which='both', axis='both', color='r', linestyle=':', linewidth=1)
 plt.xlim(a, b)

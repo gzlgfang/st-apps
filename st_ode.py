@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy import optimize as op
 from scipy.integrate import odeint
-from fipy.tools import numerix
 import fipy as fp
 from fipy import (
         CellVariable,
@@ -15,7 +14,6 @@ from fipy import (
         ImplicitSourceTerm,
         PowerLawConvectionTerm,
 )
-from fipy.tools import numerix
 mpl.rcParams["font.sans-serif"] = ["SimHei"]  # 保证显示中文字
 mpl.rcParams["axes.unicode_minus"] = False  # 保证负号显示
 mpl.rcParams["font.size"] = 12  # 设置字体大小
@@ -26,7 +24,7 @@ mpl.rcParams["ytick.direction"] = "in"
 font1 = {"family": "Times New Roman"}
 st.sidebar.write("常微分及偏微分方程求解导航栏")
 add_selectbox = st.sidebar.radio(
-    "", ("一次微分方程1", "一次微分方程2", "高阶微分方程", "两应变量微分方程组", "四应变量微分方程组", "偏微分方程1", "偏微分方程2")
+    "", ("一次微分方程1", "一次微分方程2", "高阶微分方程", "两应变量微分方程组", "四应变量微分方程组" )
 )
 if add_selectbox == "一次微分方程1":
     st.latex("微分方程:f(x)=a_0+ a_1*cos(b_0x)+a_2*sin(b_1x)+a_3x^{b_2}")
@@ -405,193 +403,4 @@ elif add_selectbox == "四应变量微分方程组":
     plt.grid(True)
     st.pyplot(fig3)
 
-elif add_selectbox == "偏微分方程1":
-    st.latex("偏微分方程:∂u/∂t=D(∂^{2}u/∂x^{2}+∂^{2}u/∂y^{2})+αu+C_1∂u/∂x+C_2∂u/∂y")
-    st.write("输入偏微分方程4个参数")
-    col1, col2, col3, col4 = st.columns(4)
-    with col1:
-        D = st.number_input("D", value=10.0, step=0.1, format="%f")
-    with col2:
-        alpha = st.number_input("α", value=8.0, step=0.1, format="%f")
-    with col3:
-        C1 = st.number_input("C1", value=10.0, step=0.1, format="%f")
-    with col4:
-        C2 = st.number_input("C2", value=1.0, step=0.1, format="%f")
-    eq = TransientTerm() == DiffusionTerm(coeff=D) + ImplicitSourceTerm(
-        alpha
-    ) + PowerLawConvectionTerm((C1, C2))
 
-    st.write("输入初始条件及边界约束")
-    col1, col2, col3, col4 = st.columns(4)
-    with col1:
-        value = st.number_input("初值", value=0.0, step=0.1, format="%f")
-    with col2:
-        V_TL = st.number_input("左顶端边界值", value=30.0, step=0.1, format="%f")
-    with col3:
-        V_BR = st.number_input("一半右底端边界值", value=100.0, step=0.1, format="%f")
-    with col4:
-        steps = st.number_input("步长0.01时的计算步数", value=10, step=1, format="%d")
-
-    nx = 200
-    ny = nx
-    dx = 0.01
-    dy = dx
-    L = dx * nx
-    mesh = Grid2D(dx=dx, dy=dy, nx=nx, ny=ny)
-    phi = CellVariable(name="u值求解结果", mesh=mesh, value=value)
-
-    valueTopLeft = V_TL
-    valueBottomRight = V_BR
-    X, Y = mesh.faceCenters
-    facesTopLeft = (mesh.facesLeft & (Y >= 0)) | (mesh.facesTop & (X <= L))
-    facesBottomRight = (mesh.facesRight & (Y <= L)) | (mesh.facesBottom & (X >= L / 2))
-    phi.constrain(valueTopLeft, facesTopLeft)
-    phi.constrain(valueBottomRight, facesBottomRight)
-
-    timeStepDuration = 0.01
-    # 10 * 0.9 * dx**2 / (2 * D)
-    steps = steps
-    num = "D=" + str(D) + ",alpha=" + str(alpha) + ",t=" + str(steps * timeStepDuration)
-    # from builtins import range
-    for step in range(steps):
-        eq.solve(var=phi, dt=timeStepDuration)
-
-    arr = np.zeros(len(phi))
-    for i in range(len(phi)):
-        arr[i] = phi[i]
-    ar = arr.reshape(nx, nx)
-    # print(ar)
-    x = np.arange(nx) * dx  # 长度位置，归一处理，从0开始，共101个点
-    y = np.arange(nx) * dy
-    X, Y = np.meshgrid(x, y)
-
-    norm = mpl.colors.Normalize(0, max(V_BR, V_TL))
-    fig, ax = plt.subplots(1, 1, figsize=(8, 8))  # 布局设置
-    p = ax.pcolor(X, Y, ar, cmap=mpl.cm.jet, norm=norm, shading="auto")  # pcolor绘制
-    cb = plt.colorbar(p, ax=ax)
-    cb.set_label("应变量u值")
-    ax.set_title(num + "时不同位置求解结果变化色图")
-    font1 = {"family": "Times New Roman"}
-    plt.yticks([0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2])  # 设置纵轴刻度
-    plt.xticks([0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2])
-    ax.set_xlabel("x", font1)
-    ax.set_ylabel("y", font1)
-    st.pyplot(fig)
-
-
-elif add_selectbox == "偏微分方程2":
-    # from fipy import (
-    #     CellVariable,
-    #     Grid2D,
-    #     Viewer,
-    #     TransientTerm,
-    #     DiffusionTerm,
-    #     ImplicitSourceTerm,
-    #     PowerLawConvectionTerm,
-    # )
-    
-
-    st.latex("偏微分方程:∂u/∂t=D(∂^{2}u/∂x^{2}+∂^{2}u/∂y^{2}+∂^{2}u/∂z^{2})+αu+C_1∂u/∂x+C_2∂u/∂y")
-    st.write("输入偏微分方程4个参数")
-    col1, col2, col3, col4 = st.columns(4)
-    with col1:
-        D = st.number_input("D", value=10.0, step=0.1, format="%f")
-    with col2:
-        alpha = st.number_input("α", value=8.0, step=0.1, format="%f")
-    with col3:
-        C1 = st.number_input("C1", value=10.0, step=0.1, format="%f")
-    with col4:
-        C2 = st.number_input("C2", value=1.0, step=0.1, format="%f")
-    eq = TransientTerm() == DiffusionTerm(coeff=D) + ImplicitSourceTerm(
-        alpha
-    ) + PowerLawConvectionTerm((C1, C2))
-
-    st.write("输入初始条件及边界约束")
-    col1, col2, col3, col4 = st.columns(4)
-    with col1:
-        value = st.number_input("初值", value=0.0, step=0.1, format="%f")
-    with col2:
-        V_TL = st.number_input("左顶端边界值", value=30.0, step=0.1, format="%f")
-    with col3:
-        V_BR = st.number_input("一半右底端边界值", value=100.0, step=0.1, format="%f")
-    with col4:
-        steps = st.number_input("步长0.01时的计算步数", value=10, step=1, format="%d")
-
-    nx = 10
-    ny = nx
-    nz = nx
-    dx = 0.1
-    dy = dx
-    dz = dx
-    L = dx * nx
-    # mesh = Grid2D(dx=dx, dy=dy, nx=nx, ny=ny)
-    mesh = fp.Grid3D(dx=dx, dy=dy, dz=dz, nx=nx, ny=ny, nz=nz)
-
-    u = fp.CellVariable(name="solution variable", mesh=mesh, value=value)
-    D = D
-    # eq =DiffusionTerm(coeff=D)==0
-    # TransientTerm()
-    alpha = alpha
-    eq = fp.TransientTerm() == fp.DiffusionTerm(coeff=D) + fp.ImplicitSourceTerm(alpha)
-    valueTopLeft = V_TL
-    valueBottomRight = V_BR
-    X, Y, Z = mesh.faceCenters
-    facesTopLeft = (mesh.facesLeft & (Y > 0)) | (mesh.facesTop & (X < L))
-    facesBottomRight = (mesh.facesRight & (Y <= L)) | (mesh.facesBottom & (X >= L / 2))
-    u.constrain(valueTopLeft, facesTopLeft)
-    u.constrain(valueBottomRight, facesBottomRight)
-    timeStepDuration =0.001
-    #  10 * 0.9 * dx**2 / (2 * D)
-    steps = steps
-    for step in range(steps):
-        eq.solve(var=u, dt=timeStepDuration)
-        # print(u)
-        # print(type(phi),len(phi))
-    arr = np.zeros(len(u))
-    for i in range(len(u)):
-        arr[i] = u[i]
-    arr1 = list(arr)
-    b = arr1.reverse()
-    arr = np.array(arr1)
-    ar = arr.reshape(nx, ny, nz)
-    x = np.arange(nx) * dx  # 长度位置，归一处理，从0开始，共101个点
-    y = np.arange(ny) * dy
-
-    X, Y = np.meshgrid(x, y)
-    #norm = mpl.colors.Normalize(30, 100)
-    norm = mpl.colors.Normalize(0, max(V_BR, V_TL))
-    for i in range(1, 9, 4):
-        # for i in range(nz):
-        c = ar[:, :, i]
-        fig2 = plt.figure()
-        ax = plt.subplot(111, projection="3d")
-        p = ax.plot_surface(
-            X,
-            Y,
-            c,
-            rstride=1,
-            cstride=1,
-            linewidth=0,
-            antialiased=False,
-            norm=norm,
-            cmap=mpl.cm.jet,
-        )
-        # ax.contour(X, Y, z, zdir='z', offset=0, norm=norm, cmap=mpl.cm.copper)
-        ax.set_xlabel("x", font1)
-        ax.set_ylabel("y", font1)
-        fig2.colorbar(p, ax=ax, shrink=0.8)
-        st.pyplot(fig2)
-
-    z = np.arange(nz) * dz
-    X1, Y1, Z1 = np.meshgrid(x, y, z)
-    fig3 = plt.figure()
-    ax = plt.subplot(111, projection="3d")
-    # p = ax.plot_surface(X, Y, Z, rstride=1, cstride=1, linewidth=0, antialiased=False, norm=norm, cmap=mpl.cm.jet)
-    p = ax.scatter(
-        X1, Y1, Z1, s=250, c=ar, cmap=mpl.cm.jet, marker="o", zdir="z", norm=norm
-    )
-    ax.set_xlabel("x", font1)
-    ax.set_ylabel("y", font1)
-    ax.set_zlabel("z", font1)
-    fig3.colorbar(p, ax=ax, shrink=0.8)
-    st.pyplot(fig3)
