@@ -17,8 +17,8 @@ mpl.rcParams["font.size"] = 18#设置字体大小
 #mpl.rcParams["font.style"] = "oblique"#设置字体风格，倾斜与否
 mpl.rcParams["font.weight"] ="normal"# "normal",=500，设置字体粗细
 font1 = {'family': 'Times New Roman'} 
-labels=['最近7日活跃人数','学习者总规模','论坛发帖回复率','讨论区人均互动次数','讨论区参与规模']
-
+#labels=['最近7日活跃人数','学习者总规模','论坛发帖回复率','讨论区人均互动次数','讨论区参与规模']
+labels=['Number of active people in the last 7 days','Total number of learners','Forum post response rate','The number of interactions per capita in the discussion area','Discussion board participation scale']
 #labels=['数学','语文',  '英文',' 物理','化学']
 data1=np.array([95,90,93,86,80])#五个方面的数据，与平均值相比的百分数，超过平均值取100
 N=len(data1)#计算数据长度
@@ -44,7 +44,7 @@ ax1.set_theta_direction(-1)
 ax1.set_rlabel_position(180)#单位为360度值
 ax1.spines['polar'].set_visible(False)
 #ax.grid(False)
-ax1.set_title("慕课学习健康图")
+ax1.set_title("MOOC learning health map")
 #ax1.set_title("李四课程学习健康图")
        
 #plt.legend(["计算机辅助设计"], loc='best',bbox_to_anchor=(1, 0.5, 0, 0.1))
@@ -64,7 +64,7 @@ ax2.set_theta_direction(-1)
 ax2.set_rlabel_position(180)#单位为360度值
 ax2.spines['polar'].set_visible(False)
 #ax.grid(False)
-ax2.set_title("慕课学习健康图")
+ax2.set_title("MOOC learning health map")
 #ax2.set_title("李四课程学习健康图")         
 #plt.legend(["计算机辅助设计"], loc='best',bbox_to_anchor=(1, 0.5, 0, 0.1))
 
@@ -74,9 +74,9 @@ data_2 = np.concatenate((data2, [data2[0]]))#数列组合
 
 ax3 = plt.subplot(313, polar=True)
 # 绘制雷达图
-ax3.plot(angles, data_1, marker='o',color='b',linewidth=1,label="计算机辅助设计")
+ax3.plot(angles, data_1, marker='o',color='b',linewidth=1,label="Computer Aided Design")
 ax3.fill(angles, data_1, color='g',alpha=0.3)
-ax3.plot(angles, data_2, color='#C51B7D',marker='*',linewidth=1,label="计算机化工应用")
+ax3.plot(angles, data_2, color='#C51B7D',marker='*',linewidth=1,label="Computer Chemical Applications")
 ax3.fill(angles, data_2, color='#C51B7D',alpha=0.3)
 # 设置雷达图中每一项的标签显示,两种方法均可以。
 ax3.set_thetagrids(angles*180/np.pi, labels,size=16)#单位为360度制
@@ -92,6 +92,6 @@ ax3.set_theta_direction(-1)#表示顺时针方向为正
 #ax.set_rlabel_position(0)
 ax3.spines['polar'].set_visible(False)
 #ax.grid(False)
-ax3.set_title("两门慕课学习健康图")
+ax3.set_title("Two MOOCs study health map")
 plt.legend(loc='best',bbox_to_anchor=(1, 0.5, 0, 0.1))
 st.pyplot(fig)
