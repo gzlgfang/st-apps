@@ -13,7 +13,7 @@ mpl.rcParams["axes.unicode_minus"] = False
 x = np.arange(1, 13)
 fig, ax1 = plt.subplots(figsize=(20, 9))
 # 设置第一纵坐标轴的单位
-ax1.yaxis.set_major_formatter(mticker.FormatStrFormatter('%d 万吨/月'))
+ax1.yaxis.set_major_formatter(mticker.FormatStrFormatter('%d Ten thousand tons/Month'))
 # 自定义横轴
 ax1.set_xticklabels([str(i) + '月' for i in range(1, 13)], fontsize=18)
 # 设置横轴 特定x值时显示刻度
@@ -37,7 +37,7 @@ plt.ylim(0, 220)
 # 第二纵轴的设置和绘图
 ax2 = ax1.twinx()
 bar_width = 0.5
-ax2.yaxis.set_major_formatter(mticker.FormatStrFormatter('%d 10000tons/month'))
+ax2.yaxis.set_major_formatter(mticker.FormatStrFormatter('%d 10 Thousand tons/month'))
 plt.plot(x, nxl, 'r', label="Cumulative sales weight")
 plt.bar(x, nxl, bar_width, label="Cumulative sales weight", align="center")
 plt.legend(loc='upper right')
