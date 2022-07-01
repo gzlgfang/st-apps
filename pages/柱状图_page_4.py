@@ -25,24 +25,24 @@ s = 0
 for i in range(0, 12):
     s = s + yxl[i]
     nxl[i] = s
-plt.plot(x, yxl, 'g', label="月销量")
+plt.plot(x, yxl, 'g', label="Monthly sales weight")
 # 显示网格
 plt.grid(True)
-plt.xlabel("月份", size=20)
-plt.ylabel('月销量', size=20)
-plt.title("某公司甲醇月销售及汇总图", size=20)
+plt.xlabel("Month", size=20)
+plt.ylabel('Monthly sales weight', size=20)
+plt.title("A company's methanol sales weight and summary chart", size=20)
 # 设置线标的位置
 plt.legend(loc='upper left')
 plt.ylim(0, 220)
 # 第二纵轴的设置和绘图
 ax2 = ax1.twinx()
 bar_width = 0.5
-ax2.yaxis.set_major_formatter(mticker.FormatStrFormatter('%d 万吨/月'))
-plt.plot(x, nxl, 'r', label="累计销量")
-plt.bar(x, nxl, bar_width, label="累计销量", align="center")
+ax2.yaxis.set_major_formatter(mticker.FormatStrFormatter('%d 10000tons/month'))
+plt.plot(x, nxl, 'r', label="Cumulative sales weight")
+plt.bar(x, nxl, bar_width, label="Cumulative sales weight", align="center")
 plt.legend(loc='upper right')
 ax2.tick_params(labelsize=18)
-ax2.set_ylabel("累计销量", size=20)
+ax2.set_ylabel("Cumulative sales weight", size=20)
 # 限制横轴显示刻度的范围
 plt.xlim(0, 13)
 plt.ylim(0, nxl[-1] + 100)
