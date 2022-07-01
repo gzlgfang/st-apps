@@ -19,14 +19,14 @@ y2=3*np.cos(1.5*x)
 fig,ax=plt.subplots(3,3,figsize=(15,15))#设置3×3图组
 #绘制普通曲线
 ax[0,0].plot(x,y1,lw=2)#绘制x和y1之间的函数曲线
-title="plot Draw normal curve"
+title="Draw curve"
 axes_settings(fig,ax[0,0],title)
 
 #绘制散点趋势点图
 x=np.random.rand(500)
 y=np.random.rand(500)#随机产生500个0-1的数据
 ax[0,1].scatter(x,y,color="blue")
-title="Draw a scatter trend point graph"
+title="Draw scatter graph"
 ax[0,1].set_ylim(0,1)
 axes_settings(fig,ax[0,1],title)
 
@@ -34,7 +34,7 @@ axes_settings(fig,ax[0,1],title)
 x3=np.arange(1,7)
 y3=[3,8,1,5,7,4]
 ax[0,2].bar(x3,y3,color="bisque",align="center",hatch="//", edgecolor='g')
-title="Draw a bar chart"
+title="Draw bar chart"
 axes_settings(fig,ax[0,2],title)
 
 #绘制条状图
@@ -48,7 +48,7 @@ axes_settings(fig,ax[1,0],title)
 x5=np.random.randint(0,8,100)#随机产生100个0-8之间的整数
 bins=range(0,9,1)#数据统计的间隔及范围
 ax[1,1].hist(x5,bins=bins,histtype="bar",rwidth=1,color="m",hatch="/",alpha=0.6, edgecolor='b')
-title="Draw a histogram"
+title="Draw  histogram"
 axes_settings(fig,ax[1,1],title)
 ax[1,1].set_xlim(0,8)
 
@@ -73,7 +73,7 @@ axes_settings(fig,ax[2,0],title)
 #绘制箱线图
 x7=np.random.randn(800)
 ax[2,1].boxplot(x7)
-title="Draw a boxplot"
+title="Draw  boxplot"
 axes_settings(fig,ax[2,1],title)
 
 #绘制误差图
