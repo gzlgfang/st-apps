@@ -768,7 +768,7 @@ elif add_selectbox=="模拟退火算法求解最优邮路":
          city_y[i] = int(np.random.random() * 50) + 1
          w1[i]=int(np.random.random() * 30) + 1
    else:
-      DF = pd.read_excel(post_files, "Sheet1", na_filter=False, index_col=0)  # 
+      DF = pd.read_excel(post_files, "Sheet1", na_filter=False)  #, index_col=0 
       city_x = np.array(DF["x"])  # 数据分配
       city_y = np.array(DF["y"])
       w1=np.array(DF["w"])
