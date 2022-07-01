@@ -13,12 +13,12 @@ import matplotlib  as mpl
 #全局设置字体
 mpl.rcParams["font.sans-serif"]=["FangSong"]#保证显示中文字
 mpl.rcParams["axes.unicode_minus"]=False#保证负号显示
-mpl.rcParams["font.size"] = 18#设置字体大小
+mpl.rcParams["font.size"] = 12#设置字体大小
 #mpl.rcParams["font.style"] = "oblique"#设置字体风格，倾斜与否
 mpl.rcParams["font.weight"] ="normal"# "normal",=500，设置字体粗细
 font1 = {'family': 'Times New Roman'} 
 #labels=['最近7日活跃人数','学习者总规模','论坛发帖回复率','讨论区人均互动次数','讨论区参与规模']
-labels=['Number of active people in the last 7 days','Total number of learners','Forum post response rate','The number of interactions per capita in the discussion area','Discussion board participation scale']
+labels=['Number in 7 days','Total number of learners','Forum post response rate','The number of interactions per capita ','Discussion board scale']
 #labels=['数学','语文',  '英文',' 物理','化学']
 data1=np.array([95,90,93,86,80])#五个方面的数据，与平均值相比的百分数，超过平均值取100
 N=len(data1)#计算数据长度
