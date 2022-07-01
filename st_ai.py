@@ -746,7 +746,7 @@ elif add_selectbox=="模拟退火算法求解最优邮路":
    with col2:
       test_num = st.number_input("实验次数test_num", value=5,step=1,format="%d")   
    with col3:
-     post_files= st.text_input("邮局及投递点x,y,w数据,空为随机数", value="g:/Postal.xlsx") 
+     post_files= st.text_input("邮局及投递点x,y,w数据,空为随机数", value="") #g:/Postal.xlsx
   
    T00 = T00  # 初始温度
    T0=T00
