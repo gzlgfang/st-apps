@@ -19,7 +19,7 @@ cy_col= ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd',
 fig=plt.figure()
 x=[0.466,0.277,0.081,0.050,0.036,0.028,0.026,0.021,0.015]
 #labels=['氧','硅','铝','铁','钙','钠','钾','镁','其他'   ] 
-labels=['O_2','Si','Al','Fe','Ca钙','Na','K','Mg镁','Others'   ] 
+labels=['O_2','Si','Al','Fe','Ca','Na','K','Mg','Others'   ] 
 wedges,texts,autotexts=plt.pie(x,startangle=45,shadow=False,
         colors=cy_col,autopct="%3.1f%%",textprops=dict(color="w"))
 #plt.text(-0.20,-1.15,"地壳元素含量表")
@@ -41,7 +41,7 @@ plt.table(loc='bottom',   # 表格在图表区的位置
           colWidths=[0.15]*9,    # 表格每列的宽度,对字体大小有影响        
           cellText=xValue,    # 表格中的数值, 每行数据的列表的列表
           cellLoc='center',    # 表格中数据的对齐位置
-          rowLabels=["含量,%"] , #表格行名称
+          rowLabels=["content,%"] , #表格行名称
           fontsize=12)
 plt.legend(wedges, labels,loc='center left',title="Element Name",bbox_to_anchor=(0.9,0,0.3,1))
 st.pyplot(fig)
