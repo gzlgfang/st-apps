@@ -2,7 +2,7 @@ import streamlit as st
 global n
 n=0
 st.header("有关一字开头的成语学习")
-
+st.text("本软件由方利国开发，发现错误之处请联系lgfang@scut.edu.cn,不胜感谢")
 st.subheader("第1题")
 select=st.radio("下面有关一字的四个词组，哪个不是成语:",
      ('一成不变', '一个不剩', '一夫当关','一蹴而就'),horizontal=True)#前面题目，后面4个选项
@@ -64,8 +64,6 @@ select=st.radio("比喻彼此一样，没有什么差别并用作贬义的成语
      ('一心一意', '一团和气', '一波三折','一丘之貉'),horizontal=True)
 if select == '一丘之貉':
      n=n+1
-
-
 
 
 if n>8:
