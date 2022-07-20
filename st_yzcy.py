@@ -18,7 +18,7 @@ if select == '没有一窍是通的':
 st.subheader("第3题")
 select=st.radio("成语《一望无垠》中的<垠>的发音正确的是:",
      ('yin第四声', 'yin第二声', 'gen第四声','gen第二声'),horizontal=True)
-if select == 'yin第三声':
+if select == 'yin第二声':
      n=n+1
 
 st.subheader("第4题")
