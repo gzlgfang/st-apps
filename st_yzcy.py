@@ -4,8 +4,14 @@ n=0
 st.header("有关一字开头的成语学习")
 st.text("本软件由方利国开发，发现错误之处请联系lgfang@scut.edu.cn,不胜感谢")
 st.subheader("第1题")
-select=st.radio("下面有关一字的四个词组，哪个不是成语:",
-     ('一成不变', '一个不剩', '一夫当关','一蹴而就'),horizontal=True)#前面题目，后面4个选项
+str_test=["下面有关一字的四个词组，哪个不是成语:",
+     '一成不变', '一个不剩', '一夫当关','一蹴而就']
+
+#select=st.radio("下面有关一字的四个词组，哪个不是成语:",
+     #('一成不变', '一个不剩', '一夫当关','一蹴而就'),horizontal=True)#前面题目，后面4个选项
+select=st.radio(str_test[0],
+     (str_test[1], str_test[2], str_test[3],str_test[4]),horizontal=True)#前面题目，后面4个选项
+
 if select == '一个不剩':  #这里填正确答案
      n=n+1
 
