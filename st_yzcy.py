@@ -73,12 +73,21 @@ if select == '一丘之貉':
 
 
 if n>8:
-   st.write("恭喜您答对",n,"题,是个一字成语大行家")
+   #st.write("恭喜您答对",n,"题,是个一字成语大行家")
+   str_n=str(n)
+   sstr="恭喜您答对" + str_n + "题,是个一字成语大行家"
+   st.subheader(sstr)
 elif n>=6:
-    st.write("恭喜您答对",n,"题,本次成绩不错，还有提升空间")  
-elif n<=5:
-     st.write("本次答对",n,"题,成绩不理想，请多多学习") 
+    #st.write("恭喜您答对",n,"题,本次成绩不错，还有提升空间")  
+    str_n=str(n)
+    sstr="恭喜您答对" + str_n + "题,本次成绩不错，还有提升空间"
+    st.subheader(sstr)
 
+elif n<=5:
+     #st.write("本次答对",n,"题,成绩不理想，请多多学习") 
+     str_n=str(n)
+     sstr="本次只答对" + str_n + "题,成绩不理想，请多多学习"
+     st.subheader(sstr)
 
 
 
