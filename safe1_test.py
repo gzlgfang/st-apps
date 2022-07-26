@@ -688,7 +688,7 @@ elif add_selectbox=="100题":
 st.header("有关化学化工实验室安全考试")
 st.text("  本软件代码由方利国开发，题目由2022化学与化工学院Python软件")
 st.text("开发小组提供,发现错误之处请联系lgfang@scut.edu.cn,不胜感谢。")
-name = st.text_input('请输入您的姓名', '张山')
+name = st.text_input('请输入您的姓名', '张三')
 sel_no=st.number_input("选择一个试卷序列号", value=3,min_value=0, max_value=input_max, step=1, format="%i")
 #if st.button('开始做题'):
 test_num =rnd.sample(li, num) 
