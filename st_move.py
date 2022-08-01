@@ -32,8 +32,8 @@ st.header("有关方阵点最短距离连点问题人工智能求解")
 st.text("本软件由方利国、方曦共同开发")
 st.text("发现错误之处请联系lgfang@scut.edu.cn,不胜感谢。")
 with st.form("my_form"):
-    w=st.number_input("选择方阵宽度", value=6,min_value=2, max_value=20, step=1, format="%i")
-    h=st.number_input("选择方阵高度", value=6,min_value=2, max_value=20, step=1, format="%i")
+    w=st.number_input("选择方阵宽度", value=5,min_value=2, max_value=20, step=1, format="%i")
+    h=st.number_input("选择方阵高度", value=5,min_value=2, max_value=20, step=1, format="%i")
     n=w*h
     city_zb = np.zeros((n, 2))  # 设置坐标数组
     for i in range(h):
