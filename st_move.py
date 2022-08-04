@@ -55,7 +55,7 @@ with st.form("my_form"):
     plt.text(city_zb[end_num, 0] + 0.1, city_zb[end_num, 1] + 0.1, "End")
     for i in range(n):
                 # plt.text(city_zb[LJ[i],0]-0.3,city_zb[LJ[i],1]+0.5,str(i+1),color="r")
-                plt.text(city_zb[i, 0] - 0.1, city_zb[i, 1] + 0.1, str(i + 1), color="r")
+                plt.text(city_zb[i, 0]+ 0.1, city_zb[i, 1] + 0.1, str(i), color="r")
     plt.ylim(-1, h)
     plt.xlim(-1, w)
     plt.xticks(np.arange(-1,w,step=1))
@@ -112,7 +112,7 @@ with st.form("my_form"):
 
                 for i in range(n+2):
                     # plt.text(city_zb[LJ[i],0]-0.3,city_zb[LJ[i],1]+0.5,str(i+1),color="r")
-                    plt.text(city_zb[i, 0] - 0.1, city_zb[i, 1] + 0.1, str(i + 1), color="r")
+                    plt.text(city_zb[i, 0] + 0.1, city_zb[i, 1] + 0.1, str(i), color="r")
                 # 绘线
                 xy = (city_zb[start_num, 0], city_zb[start_num, 1])
                 xytext = (city_zb[LJ[0], 0], city_zb[LJ[0], 1])
