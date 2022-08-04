@@ -51,8 +51,8 @@ with st.form("my_form"):
     plt.scatter(
                 city_zb[:, 0], city_zb[:, 1], marker="o", color="b", s=100
             ) 
-    plt.text(city_zb[start_num, 0] + 0.1, city_zb[start_num, 1] + 0.1, "Start")
-    plt.text(city_zb[end_num, 0] + 0.1, city_zb[end_num, 1] + 0.1, "End")
+    plt.text(city_zb[start_num, 0] + 0.2, city_zb[start_num, 1] + 0.1, "Start")
+    plt.text(city_zb[end_num, 0] + 0.2, city_zb[end_num, 1] + 0.1, "End")
     for i in range(n):
                 # plt.text(city_zb[LJ[i],0]-0.3,city_zb[LJ[i],1]+0.5,str(i+1),color="r")
                 plt.text(city_zb[i, 0]+ 0.1, city_zb[i, 1] + 0.1, str(i), color="r")
@@ -107,8 +107,8 @@ with st.form("my_form"):
                 )  # 所有城市位置上画上o
                 # plt.text(city_zb[LJ[0], 0] + 0.1, city_zb[LJ[0], 1] + 0.1, "起点")
                 # plt.text(city_zb[LJ[n - 1], 0] + 0.1, city_zb[LJ[n - 1], 1] + 0.1, "终点")
-                plt.text(city_zb[start_num, 0] + 0.1, city_zb[start_num, 1] + 0.1, "Start")
-                plt.text(city_zb[end_num, 0] + 0.1, city_zb[end_num, 1] + 0.1, "End")
+                plt.text(city_zb[start_num, 0] + 0.2, city_zb[start_num, 1] + 0.1, "Start")
+                plt.text(city_zb[end_num, 0] + 0.2, city_zb[end_num, 1] + 0.1, "End")
 
                 for i in range(n+2):
                     # plt.text(city_zb[LJ[i],0]-0.3,city_zb[LJ[i],1]+0.5,str(i+1),color="r")
