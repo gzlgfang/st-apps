@@ -41,8 +41,8 @@ if uploaded_file is not None:
      # Can be used wherever a "file-like" object is accepted:
      dataframe = pd.read_csv(uploaded_file)
      st.write(dataframe)
-     st.write(dataframe.values[(0,3)])
-     st.write(dataframe.values[(1,4)])
+     st.write(dataframe.values[(3,1)])
+     st.write(dataframe.values[(5,1)])
      x=dataframe.values[(1,1)]+dataframe.values[(2,1)]+dataframe.values[(3,1)]
      st.write(x)
      st.header("有关一字开头的成语学习")
@@ -118,14 +118,14 @@ if uploaded_file is not None:
 
      if n>8:
      #st.write("恭喜您答对",n,"题,是个一字成语大行家")
-     str_n=str(n)
-     sstr="恭喜您答对" + str_n + "题,是个一字成语大行家"
-     st.subheader(sstr)
+          str_n=str(n)
+          sstr="恭喜您答对" + str_n + "题,是个一字成语大行家"
+          st.subheader(sstr)
      elif n>=6:
      #st.write("恭喜您答对",n,"题,本次成绩不错，还有提升空间")  
-     str_n=str(n)
-     sstr="恭喜您答对" + str_n + "题,本次成绩不错，还有提升空间"
-     st.subheader(sstr)
+          str_n=str(n)
+          sstr="恭喜您答对" + str_n + "题,本次成绩不错，还有提升空间"
+          st.subheader(sstr)
 
      elif n<=5:
           #st.write("本次答对",n,"题,成绩不理想，请多多学习") 
