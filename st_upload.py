@@ -41,8 +41,8 @@ if uploaded_file is not None:
      # Can be used wherever a "file-like" object is accepted:
      dataframe = pd.read_csv(uploaded_file)
      st.write(dataframe)
-     st.write(dataframe.values[(0,1)])
-     st.write(dataframe.values[(1,1)])
+     st.write(dataframe.values[(0,3)])
+     st.write(dataframe.values[(1,4)])
      x=dataframe.values[(1,1)]+dataframe.values[(2,1)]+dataframe.values[(3,1)]
      st.write(x)
      st.header("有关一字开头的成语学习")
