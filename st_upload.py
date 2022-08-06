@@ -41,6 +41,8 @@ if uploaded_file is not None:
      # Can be used wherever a "file-like" object is accepted:
      dataframe = pd.read_csv(uploaded_file)
      st.write(dataframe)
+     array_d=np.array(dataframe)
+     st.write(array_d)
      st.write(dataframe.values[(3,1)])
      st.write(dataframe.values[(5,1)])
      x=dataframe.values[(1,1)]+dataframe.values[(2,1)]+dataframe.values[(3,1)]
