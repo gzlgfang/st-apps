@@ -42,7 +42,24 @@ if uploaded_file is not None:
      dataframe = pd.read_csv(uploaded_file)
      st.write(dataframe)
      array_d=np.array(dataframe)
+     arr=np.array([[3,4,5],[7,8,9],[12,14,17]])
+     ar_sum=sum(sum(array_d))
+     st.write("ar-sum=",ar_sum)
+     ss=0
+     for i in range(10):
+         ss=ss+array_d[i,0]
+     st.write(ss)
      st.write(array_d)
+     st.write(arr)
+     st.markdown(arr)
+     st.write(array_d[:,1])
+     st.write(array_d[3,1])
+     st.write(array_d[5,1])
+     st.write(array_d[3,0])
+     st.write(array_d[5,0])
+
+     list1=list(array_d[:,1])
+     st.write(list1)
      st.write(dataframe.values[(3,1)])
      st.write(dataframe.values[(5,1)])
      x=dataframe.values[(1,1)]+dataframe.values[(2,1)]+dataframe.values[(3,1)]

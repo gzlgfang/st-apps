@@ -1168,12 +1168,12 @@ elif add_selectbox=="蚁群算法求解TSP问题":
    with col2:
       beta = st.number_input("表征启发式因子重要程度的参数", value=4.0,step=0.1,format="%f")   
    with col3:
-      rho= st.number_input("信息素蒸发系数", value=0.08,step=0.01,format="%f")
+      rho= st.number_input("信息素蒸发系数", value=0.25,step=0.01,format="%f")
    col1, col2, col3  = st.columns(3)
    with col1:
-      itera_max= st.number_input("最大迭代次数", value=300,step=1,format="%d")       
+      itera_max= st.number_input("最大迭代次数", value=500,step=1,format="%d")       
    with col2:
-      Q = st.number_input("信息素增加强度系数", value=1.0,step=0.1,format="%f")   
+      Q = st.number_input("信息素增加强度系数", value=10.0,step=0.1,format="%f")   
    with col3:
      ran_ant= st.number_input("不受信息素影响的随机蚂蚁数", value=0,step=1,format="%d") 
 
@@ -1345,7 +1345,7 @@ elif add_selectbox=="蚁群算法求解TSP问题":
                   # print(prohi_tab[j-1],allow[k])
                   P[k] = (
                      tau[prohi_tab[j - 1], allow[k]] ** alpha
-                     + eta[prohi_tab[j - 1], allow[k]] ** beta
+                     * eta[prohi_tab[j - 1], allow[k]] ** beta
                   )
                   # tem_P=tau[prohi_tab[j-1],allow[k]]**alpha+eta[prohi_tab[j-1],allow[k]]**beta
                   # P.append(tem_P)
