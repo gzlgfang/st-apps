@@ -31,6 +31,8 @@ T_num = int(optimize.fsolve(fun, [30]) + 2)  # 计算退火次数
 st.header("有关方阵点最短距离连点问题人工智能求解")
 st.text("本软件由方利国、方曦共同开发")
 st.text("发现错误之处请联系lgfang@scut.edu.cn,不胜感谢。")
+#streamlit run "g:/st-app/st_move.py"
+
 with st.form("my_form"):
     w=st.number_input("选择方阵宽度", value=5,min_value=2, max_value=20, step=1, format="%i")
     h=st.number_input("选择方阵高度", value=5,min_value=2, max_value=20, step=1, format="%i")
@@ -47,7 +49,7 @@ with st.form("my_form"):
     start_num=st.number_input("选择起点序号", value=2,min_value=0, max_value= max_value, step=1, format="%i")
     end_num=st.number_input("选择终点序号", value=8,min_value=0, max_value= max_value, step=1, format="%i")
     #后面的数列中要删除开始和结束的序号数据
-    fig1 = plt.figure(figsize=(8, 6), dpi=80)
+    fig10 = plt.figure(figsize=(8, 6), dpi=80)
     plt.scatter(
                 city_zb[:, 0], city_zb[:, 1], marker="o", color="b", s=100
             ) 
@@ -61,9 +63,27 @@ with st.form("my_form"):
     plt.xticks(np.arange(-1,w,step=1))
     plt.yticks(np.arange(-1,h,step=1))
     plt.grid()
-    st.pyplot(fig1)
+    st.pyplot(fig10)
     submitted = st.form_submit_button("点击提交寻找最优路径")
     if submitted:
+        fig1 = plt.figure(figsize=(8, 6), dpi=80)
+        plt.scatter(
+                    city_zb[:, 0], city_zb[:, 1], marker="o", color="b", s=100
+                ) 
+        plt.text(city_zb[start_num, 0] + 0.2, city_zb[start_num, 1] + 0.1, "Start")
+        plt.text(city_zb[end_num, 0] + 0.2, city_zb[end_num, 1] + 0.1, "End")
+        for i in range(n):
+                    # plt.text(city_zb[LJ[i],0]-0.3,city_zb[LJ[i],1]+0.5,str(i+1),color="r")
+                    plt.text(city_zb[i, 0]+ 0.1, city_zb[i, 1] + 0.1, str(i), color="r")
+        plt.ylim(-1, h)
+        plt.xlim(-1, w)
+        plt.xticks(np.arange(-1,w,step=1))
+        plt.yticks(np.arange(-1,h,step=1))
+        plt.grid()
+        st.pyplot(fig1)
+        
+        
+        
         def Distance(city_zb):
             D = np.zeros((n, n))  #  产生两城市之间距离数据的空矩阵即零阵
             for i in range(n):
@@ -88,7 +108,7 @@ with st.form("my_form"):
             LJ[:] = li
             return LJ.astype(int)  # 需要强制转变成整数
 
-        for k in range(100):  #进行100轮退火计算，每次退火计算不一定成功
+        for k in range(60):  #进行100轮退火计算，每次退火计算不一定成功
             T0 = 2800#需要恢复初温
             n=w*h
             LJ0 = path(n,start_num,end_num)#产生一个随机路径
@@ -114,7 +134,7 @@ with st.form("my_form"):
                     # plt.text(city_zb[LJ[i],0]-0.3,city_zb[LJ[i],1]+0.5,str(i+1),color="r")
                     plt.text(city_zb[i, 0] + 0.1, city_zb[i, 1] + 0.1, str(i), color="r")
                 # 绘线
-                xy = (city_zb[start_num, 0], city_zb[start_num, 1])
+                xy = (city_zb[start_num, 0], city_zb[start_num, 1])#确定起点到0序号点
                 xytext = (city_zb[LJ[0], 0], city_zb[LJ[0], 1])
                 plt.annotate(
                     "", xy=xy, xytext=xytext, arrowprops=dict(arrowstyle="<-", color="g", lw=2)
@@ -129,7 +149,7 @@ with st.form("my_form"):
                         "", xy=xy, xytext=xytext, arrowprops=dict(arrowstyle="<-", color="r", lw=3)
                     )
 
-                xy = (city_zb[LJ[n - 1], 0], city_zb[LJ[n - 1], 1])
+                xy = (city_zb[LJ[n - 1], 0], city_zb[LJ[n - 1], 1])#序号n-1到结束点
                 xytext = (city_zb[end_num, 0], city_zb[end_num, 1])
                 plt.annotate(
                     "", xy=xy, xytext=xytext, arrowprops=dict(arrowstyle="<-", color="r", lw=3)
@@ -276,6 +296,6 @@ with st.form("my_form"):
                 print("k=",k)
                 st.write("k=",k)
                 break
-            if k==99:
-                print("对不起，经过100次的人工智能计算，仍未找到最优解，可能原问题就没有最优解")
+            if k==59:
+                print("对不起，经过60次的人工智能计算，仍未找到最优解，可能原问题就没有最优解")
                 st.write("对不起，经过100次的人工智能计算，仍未找到最优解，可能原问题就没有最优解")

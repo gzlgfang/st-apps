@@ -1232,7 +1232,7 @@ elif add_selectbox=="蚁群算法求解TSP问题":
    rho = rho
    itera_max =itera_max
    Q =Q 
-   ran_ant = ran_ant
+   ran_ant = ran_ant 
    LJ_best = np.zeros((itera_max, n))  # 各代最佳路线
    pen_best = np.zeros(itera_max)  # 各代最佳路线的长度
    eta = 3.0 / D  # 启发因子，取距离的倒数
