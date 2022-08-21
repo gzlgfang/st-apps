@@ -282,6 +282,8 @@ with st.form("my_form"):
             # print("k=",k)
             if p_len<w*h:
                 # print(p_len)
+                st.subheader("恭喜您，本次计算获得成功！")
+                st.write("模拟退火智能方法运行次数：",k+1)
                 num = "绘制最优路径"
                 #fig=plt.figure()
                 draw_path = drawpath(LJ0, city_zb, num)
@@ -296,7 +298,7 @@ with st.form("my_form"):
                 st.pyplot(fig2)
                 # print("k=",k)
                 st.subheader("恭喜您，本次计算获得成功！")
-                st.write("k=",k+1)
+                
                 break
             if k==99:
                 # print("对不起，经过60次的人工智能计算，仍未找到最优解，可能原问题就没有最优解")
