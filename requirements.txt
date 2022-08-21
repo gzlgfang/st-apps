@@ -3,5 +3,5 @@ scipy
 matplotlib
 future
 pandas
-turtle
+#turtle
 #fipy
