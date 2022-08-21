@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-from turtle import end_fill
 import numpy as np
 from scipy import optimize
 from numpy.lib import copy
