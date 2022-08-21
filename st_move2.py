@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-from turtle import end_fill
 import numpy as np
 from scipy import optimize
 from numpy.lib import copy
@@ -32,7 +30,8 @@ T_num = int(optimize.fsolve(fun, [30]) + 2)  # 计算退火次数
 st.header("有关方阵点最短距离连点问题人工智能求解")
 st.text("本软件由方利国、方曦共同开发")
 st.text("发现错误之处请联系lgfang@scut.edu.cn,不胜感谢。")
-#streamlit run "g:/st-app/st_move.py"
+#streamlit run "g:/st-app/st_move2.py"
+
 city_zb1 = np.zeros((25, 2))  # 设置坐标数组
 city_zb1 = np.zeros((25, 2))  # 设置坐标数组
 for i in range(5):
@@ -47,8 +46,8 @@ fig10 = plt.figure(figsize=(8, 6), dpi=80)
 plt.scatter(
                 city_zb1[:, 0], city_zb1[:, 1], marker="o", color="b", s=100
             ) 
-plt.text(city_zb1[2, 0] + 0.2, city_zb1[3, 1] + 0.1, "Start")
-plt.text(city_zb1[8, 0] + 0.2, city_zb1[6, 1] + 0.1, "End")
+plt.text(city_zb1[2, 0] + 0.2, city_zb1[2, 1] + 0.1, "Start")
+plt.text(city_zb1[8, 0] + 0.2, city_zb1[8, 1] + 0.1, "End")
 for i in range(25):
                 # plt.text(city_zb[LJ[i],0]-0.3,city_zb[LJ[i],1]+0.5,str(i+1),color="r")
                 plt.text(city_zb1[i, 0]+ 0.1, city_zb1[i, 1] + 0.1, str(i+1), color="r")
@@ -58,48 +57,17 @@ plt.xticks(np.arange(-1,5,step=1))
 plt.yticks(np.arange(-1,5,step=1))
 plt.grid()
 st.pyplot(fig10)
-
-
 with st.form("my_form"):
     w=st.number_input("选择方阵宽度", value=5,min_value=2, max_value=20, step=1, format="%i")
     h=st.number_input("选择方阵高度", value=5,min_value=2, max_value=20, step=1, format="%i")
-    
     #max_value=w*h-1
-    start_num=st.number_input("选择起点序号", value=3,min_value=1, max_value= 100, step=1, format="%i")
-    end_num=st.number_input("选择终点序号", value=9,min_value=1, max_value= 100, step=1, format="%i")
+    start_num=st.number_input("选择起点序号", value=3,min_value=0, max_value= 100, step=1, format="%i")
+    end_num=st.number_input("选择终点序号", value=9,min_value=0, max_value= 100, step=1, format="%i")
     start_num=start_num-1
     end_num=end_num-1
-    
     #后面的数列中要删除开始和结束的序号数据
-    # n=w*h
-    # city_zb = np.zeros((n, 2))  # 设置坐标数组
-    # for i in range(h):
-    #     for j in range(w) :
-    #         p_num=i*w+j
-    #         city_zb[p_num, 0] = j
-    #         city_zb[p_num, 1] = i
-    # # start_num=2
-    # # end_num=8
-    
-    
-    
-    
-    # fig10 = plt.figure(figsize=(8, 6), dpi=80)
-    # plt.scatter(
-    #             city_zb[:, 0], city_zb[:, 1], marker="o", color="b", s=100
-    #         ) 
-    # plt.text(city_zb[start_num, 0] + 0.2, city_zb[start_num, 1] + 0.1, "Start")
-    # plt.text(city_zb[end_num, 0] + 0.2, city_zb[end_num, 1] + 0.1, "End")
-    # for i in range(n):
-    #             # plt.text(city_zb[LJ[i],0]-0.3,city_zb[LJ[i],1]+0.5,str(i+1),color="r")
-    #             plt.text(city_zb[i, 0]+ 0.1, city_zb[i, 1] + 0.1, str(i), color="r")
-    # plt.ylim(-1, h)
-    # plt.xlim(-1, w)
-    # plt.xticks(np.arange(-1,w,step=1))
-    # plt.yticks(np.arange(-1,h,step=1))
-    # plt.grid()
-    # st.pyplot(fig10)
     submitted = st.form_submit_button("点击提交寻找最优路径")
+    
     if submitted:
         n=w*h
         st.write("w,h,start_num,end_num=",w,h,start_num+1,end_num+1)
@@ -110,7 +78,7 @@ with st.form("my_form"):
                 p_num=i*w+j
                 city_zb[p_num, 0] = j
                 city_zb[p_num, 1] = i
-         
+
         fig1 = plt.figure(figsize=(8, 6), dpi=80)
         plt.scatter(
                     city_zb[:, 0], city_zb[:, 1], marker="o", color="b", s=100
@@ -127,8 +95,6 @@ with st.form("my_form"):
         plt.grid()
         st.pyplot(fig1)
         st.write("正在计算中，请耐心等待！")
-        
-        
         def Distance(city_zb):
             D = np.zeros((n, n))  #  产生两城市之间距离数据的空矩阵即零阵
             for i in range(n):
