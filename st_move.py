@@ -34,7 +34,7 @@ T_num = int(optimize.fsolve(fun, [30]) + 2)  # 计算退火次数
 st.header("有关方阵点最短距离连点问题人工智能求解")
 st.text("本软件由方利国、方曦共同开发")
 st.text("发现错误之处请联系lgfang@scut.edu.cn,不胜感谢。")
-#streamlit run "g:/st-app/st_move3.py"
+#streamlit run "g:/st-app/st_move.py"
 
 city_zb1 = np.zeros((25, 2))  # 设置坐标数组
 city_zb1 = np.zeros((25, 2))  # 设置坐标数组
