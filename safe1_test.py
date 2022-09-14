@@ -1,6 +1,20 @@
 import streamlit as st
 import numpy as np
 import random as rnd
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+
+mpl.rcParams["font.sans-serif"]=["SimHei"]#保证显示中文字
+mpl.rcParams["axes.unicode_minus"] = False  # 保证负号显示
+mpl.rcParams["font.size"] = 8#设置字体大小
+mpl.rcParams['ytick.right']=True
+mpl.rcParams['xtick.top']=True
+mpl.rcParams['xtick.direction'] = 'in'#坐标轴上的短线朝内，默认朝外
+mpl.rcParams['ytick.direction'] = 'in'
+
+#https://gzlgfang-st-apps-safe1-test-1r5r8r.streamlitapp.com/
+
+
 
 # 化学化工实验室基本安全题目
 # 包含消防安全、用电用水安全、实验化学品性质使用、基本操作规则、废液收集、基本防护
@@ -731,6 +745,15 @@ with st.form("my_form"):
           str_n=str(n)
           sstr="本次只答对" + str_n + "题,答对率为"+str(int(100*100*n/num+0.5)/100)+"%，成绩不理想，请多多学习"
           st.subheader(sstr)
+      fig=plt.figure(num="Correct Answer Chart",figsize=(8,8))
+      labels=["正确","错误"]
+      C_M_data=[n/num,1-n/num]#正确与错误数据
+      colors=["blue","red"]#颜色
+      explode=(0.1,0.1)#间隔距离，半径的比例
+      plt.pie(C_M_data,explode=explode,labels=labels,startangle=45,shadow=True,
+        colors=colors,autopct="%3.1f%%")
+      plt.title("Correct Answer Chart",fontsize=18)
+      
       str_finsh1=str_finsh+"请截屏成绩发给指定人员或地址"
       sstr="本次只答对" + str(n) + "题,答对率为"+str(int(100*100*n/num+0.5)/100)+"%"
       sstr=sstr+str_finsh1
