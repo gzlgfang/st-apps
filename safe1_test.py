@@ -753,7 +753,7 @@ with st.form("my_form"):
       plt.pie(C_M_data,explode=explode,labels=labels,startangle=45,shadow=True,
         colors=colors,autopct="%3.1f%%")
       plt.title("Correct Answer Chart",fontsize=18)
-      
+      st.pyplot(fig)
       str_finsh1=str_finsh+"请截屏成绩发给指定人员或地址"
       sstr="本次只答对" + str(n) + "题,答对率为"+str(int(100*100*n/num+0.5)/100)+"%"
       sstr=sstr+str_finsh1
