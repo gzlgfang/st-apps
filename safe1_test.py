@@ -700,6 +700,8 @@ elif add_selectbox=="100题":
 
 #step=1#调试用
 st.header("有关化学化工实验室安全考试")
+st.subheader("点击左上角的→可选择题目数量")
+
 st.text("  本软件代码由方利国开发，题目由2022化学与化工学院Python软件")
 st.text("开发小组成员杨思维、曾佩欣、陈千潼、翁艺芝、李雨婕、谭杰提供,")
 st.text("发现错误之处请联系lgfang@scut.edu.cn,不胜感谢。")
