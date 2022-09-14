@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 mpl.rcParams["font.sans-serif"]=["SimHei"]#保证显示中文字
 mpl.rcParams["axes.unicode_minus"] = False  # 保证负号显示
-mpl.rcParams["font.size"] = 8#设置字体大小
+mpl.rcParams["font.size"] =18#设置字体大小
 mpl.rcParams['ytick.right']=True
 mpl.rcParams['xtick.top']=True
 mpl.rcParams['xtick.direction'] = 'in'#坐标轴上的短线朝内，默认朝外
@@ -748,7 +748,7 @@ with st.form("my_form"):
       fig=plt.figure(num="Correct Answer Chart",figsize=(8,8))
       labels=["Correct","Mistake"]
       C_M_data=[n/num,1-n/num]#正确与错误数据
-      colors=["blue","red"]#颜色
+      colors=["lightblue","red"]#颜色
       explode=(0.1,0.1)#间隔距离，半径的比例
       plt.pie(C_M_data,explode=explode,labels=labels,startangle=45,shadow=True,
         colors=colors,autopct="%3.1f%%")
