@@ -746,7 +746,7 @@ with st.form("my_form"):
           sstr="本次只答对" + str_n + "题,答对率为"+str(int(100*100*n/num+0.5)/100)+"%，成绩不理想，请多多学习"
           st.subheader(sstr)
       fig=plt.figure(num="Correct Answer Chart",figsize=(8,8))
-      labels=["正确","错误"]
+      labels=["Correct","Mistake"]
       C_M_data=[n/num,1-n/num]#正确与错误数据
       colors=["blue","red"]#颜色
       explode=(0.1,0.1)#间隔距离，半径的比例
