@@ -19,7 +19,7 @@ mpl.rcParams["ytick.direction"] = "in"
 # 包含消防安全、用电用水安全、实验化学品性质使用、基本操作规则、废液收集、基本防护
 # str_test[序号] = ["下面有关一字的四个词组，哪个不是成语:", '一成不变', '一个不剩', '一夫当关', '一蹴而就']
 answer = list()
-str_test = 600 * [5 * ["NA"]]
+str_test = 1200 * [5 * ["NA"]]
 # str_test = list()
 # 实验室消防安全、实验化学品性质使用
 str_test[0] = [
