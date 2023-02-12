@@ -14,6 +14,7 @@ mpl.rcParams["ytick.direction"] = "in"
 
 # https://gzlgfang-st-apps-safe1-test-1r5r8r.streamlitapp.com/
 
+# streamlit  run "g:/st-app/safe1_test.py"
 
 # 化学化工实验室基本安全题目
 # 包含消防安全、用电用水安全、实验化学品性质使用、基本操作规则、废液收集、基本防护
