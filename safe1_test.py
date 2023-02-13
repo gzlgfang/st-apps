@@ -4856,6 +4856,7 @@ st.subheader("点击左上角的→可选择题目数量")
 st.text("  本软件代码由方利国开发，题目由2022化学与化工学院Python软件")
 st.text("开发小组成员杨思维、曾佩欣、陈千潼、翁艺芝、李雨婕、谭杰提供,")
 st.text("发现错误之处请联系lgfang@scut.edu.cn,不胜感谢。")
+st.text("点击左上方的>可以选择考题数量")
 name = st.text_input("请输入您的姓名", "张三")
 sel_no = st.number_input(
     "选择一个试卷序列号", value=3, min_value=0, max_value=input_max, step=1, format="%i"
@@ -4878,7 +4879,7 @@ with st.form("my_form"):
             (str_test[k][1], str_test[k][2], str_test[k][3], str_test[k][4]),
             horizontal=True,
         )  # 前面题目，后面4个选项
-        if select == str_test[k][answer[k]]:  # 这里填正确答案,目前题目从100 199
+        if select == str_test[k][answer[k]]:  # 这里填正确答案,目前题目从0-1199
             n = n + 1
     submitted = st.form_submit_button("点击提交")
     if submitted:
