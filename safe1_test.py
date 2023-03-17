@@ -3,6 +3,9 @@ import numpy as np
 import random as rnd
 import matplotlib as mpl
 import matplotlib.pyplot as plt
+from datetime import datetime as dt
+import time
+import datetime
 
 mpl.rcParams["font.sans-serif"] = ["SimHei"]  # 保证显示中文字
 mpl.rcParams["axes.unicode_minus"] = False  # 保证负号显示
@@ -19,6 +22,9 @@ mpl.rcParams["ytick.direction"] = "in"
 # 化学化工实验室基本安全题目
 # 包含消防安全、用电用水安全、实验化学品性质使用、基本操作规则、废液收集、基本防护
 # str_test[序号] = ["下面有关一字的四个词组，哪个不是成语:", '一成不变', '一个不剩', '一夫当关', '一蹴而就']
+# start_time = dt.now()
+# start_time = time.time()
+start_time = time.process_time()
 answer = list()
 str_test = 1201 * [5 * ["NA"]]
 # str_test = list()
@@ -4867,6 +4873,9 @@ sel_no = st.number_input(
 # streamlit run "g:/safe1_test.py"
 # num=10
 # test_num =rnd.sample(li, num)
+dt = datetime.datetime.now()
+st.subheader("当前时间" + str(dt))
+
 with st.form("my_form"):
     for i in range(num):
         str_k = "第" + str(i + 1) + "题"
@@ -4883,9 +4892,16 @@ with st.form("my_form"):
             n = n + 1
     submitted = st.form_submit_button("点击提交")
     if submitted:
+
+        # end_time = time.time()
+        end_time = time.process_time()
+        time_use = end_time - start_time
         # con_num=1
         str_finsh = "欢迎您" + name + ",已完成考试,试卷序号为" + str(sel_no) + ",选择题目数为" + str(num)
         st.subheader(str_finsh)
+        str_time = "考试用时" + str(time_use) + "秒"
+
+        # st.subheader(str_time)
         # for i in range(num):
         # k=test_num[i]
         # if select ==str_test[k][answer[k-100]] :  #这里填正确答案,目前题目从100 199
@@ -4940,6 +4956,8 @@ with st.form("my_form"):
         plt.title("Question Answering Correct and Mistake Rate Chart")
 
         st.pyplot(fig)
+        dt = datetime.datetime.now()
+        st.subheader("当前时间" + str(dt))
         str_finsh1 = str_finsh + "请截屏成绩发给指定人员或地址"
         sstr = (
             "本次只答对"
