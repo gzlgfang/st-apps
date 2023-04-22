@@ -8,7 +8,7 @@ col1, col2, col3 = st.columns(3)
 
 with col1:
 
-    image1 = Image.open(".pic/建筑.jpg")
+    image1 = Image.open("./pic/建筑.jpg")
     st.header("励悟楼")
     st.image(image1)
 
