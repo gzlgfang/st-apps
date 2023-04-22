@@ -9,7 +9,7 @@ col1, col2, col3 = st.columns(3)
 with col1:
 
     image1 = Image.open("./pic/建筑.jpg")
-    st.header("励悟楼")
+    st.header("    励悟楼")
     st.image(image1)
 
     with col2:
@@ -18,12 +18,12 @@ with col1:
         image2 = Image.open("./pic/樱花.jpg")
         # image2 = Image.open("pic/1009.png")
 
-        st.header("樱花")
-        # st.image(image1)
+        st.header("   樱花")
+        st.image(image2)
 
 with col3:
     image3 = Image.open("./pic/异木棉.jpg")
-    st.header("异木棉")
+    st.header("   异木棉")
     st.image(image3)
 
 # streamlit run g:/st_image.py
