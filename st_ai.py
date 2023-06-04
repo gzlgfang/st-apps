@@ -56,7 +56,7 @@ if add_selectbox == "遗传算法求解TSP问题":
             city_zb[i, 1] = int(np.random.random() * hight * 100) / 100
         return city_zb
 
-    city_num = st.number_input("输入随机城市数目，随机计算时使用", value=30, step=1, format="%d")
+    city_num = st.number_input("输入随机城市数目，随机计算时使用", value=15, step=1, format="%d")
     st.write("加载具体路径的数据文件csv,三列结构，第一列城市名称，第二列为x坐标，第三列为y坐标；如不加载则利用随机数据进行计算", value="")
     # 读入城市坐标
     uploaded_file = st.file_uploader("Choose a file")
@@ -1259,7 +1259,7 @@ elif add_selectbox == "蚁群算法求解TSP问题":
 
     col1, col2 = st.columns(2)
     with col1:
-        city_num = st.number_input("输入随机城市数目，随机计算时使用", value=30, step=1, format="%d")
+        city_num = st.number_input("输入随机城市数目，随机计算时使用", value=15, step=1, format="%d")
     with col2:
         B = st.number_input("是否回起点,是1,否0", value=1, step=1, format="%d")
     # city_num = 20
