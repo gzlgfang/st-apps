@@ -56,7 +56,7 @@ if add_selectbox == "遗传算法求解TSP问题":
         return city_zb
 
     city_num = st.number_input("输入随机城市数目，随机计算时使用", value=30, step=1, format="%d")
-    city_files = st.text_input("输入具体路径的数据文件,如为空则利用随机数据进行计算", value="")
+    city_files = st.text_input("加载具体路径的数据文件,如为空则利用随机数据进行计算", value="")
 
     # 读入城市坐标
     uploaded_file = st.file_uploader("Choose a file")
