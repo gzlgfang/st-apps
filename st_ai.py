@@ -56,29 +56,13 @@ if add_selectbox == "遗传算法求解TSP问题":
         return city_zb
 
     city_num = st.number_input("输入随机城市数目，随机计算时使用", value=30, step=1, format="%d")
-    city_files = st.text_input("加载具体路径的数据文件,如为空则利用随机数据进行计算", value="")
-
+    st.write("加载具体路径的数据文件csv,三列结构，第一列城市名称，第二列为x坐标，第三列为y坐标；如不加载则利用随机数据进行计算", value="")
     # 读入城市坐标
     uploaded_file = st.file_uploader("Choose a file")
     if uploaded_file is not None:
-        # To read file as bytes:
-        # bytes_data = uploaded_file.getvalue()
-        # st.write(bytes_data)
-
-        # To convert to a string based IO:
-        # stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
-        # st.write(stringio)
-
-        # To read file as string:
-        # string_data = stringio.read()
-        # st.write(string_data)
-
-        # Can be used wherever a "file-like" object is accepted:
         dataframe = pd.read_csv(uploaded_file)
-        # st.write(dataframe)
         array_d = np.array(dataframe)
-
-        # DF = pd.read_excel(city_files, "Sheet1", na_filter=False, index_col=0)  # 共有31个城市坐标
+        # 共有31个城市坐标
         city_x = array_d[:, 1]  # 数据分配
         city_y = array_d[:, 2]
         n = len(city_x)  # 计算城市的数目
@@ -1277,21 +1261,42 @@ elif add_selectbox == "蚁群算法求解TSP问题":
         city_num = st.number_input("输入随机城市数目，随机计算时使用", value=30, step=1, format="%d")
     with col2:
         B = st.number_input("是否回起点,是1,否0", value=1, step=1, format="%d")
-    city_files = st.text_input("输入具体路径的数据文件,如为空则利用随机数据进行计算", value="")
-    if city_files == "":
-        city_zb = city_zb(50, 50, city_num)
-        n = city_num
-    else:
-        # 读入城市坐标
-        DF = pd.read_excel(
-            city_files, "Sheet1", na_filter=False, index_col=0
-        )  # 共有31个城市坐标
-        city_x = np.array(DF["x"])  # 数据分配
-        city_y = np.array(DF["y"])
+
+    city_num = st.number_input("输入随机城市数目，随机计算时使用", value=30, step=1, format="%d")
+
+    st.write("加载具体路径的数据文件csv,三列结构，第一列城市名称，第二列为x坐标，第三列为y坐标；如不加载则利用随机数据进行计算", value="")
+    # 读入城市坐标
+    uploaded_file = st.file_uploader("Choose a file")
+    if uploaded_file is not None:
+        dataframe = pd.read_csv(uploaded_file)
+        array_d = np.array(dataframe)
+        # 共有31个城市坐标
+        city_x = array_d[:, 1]  # 数据分配
+        city_y = array_d[:, 2]
         n = len(city_x)  # 计算城市的数目
         city_zb = np.zeros((n, 2))  # 设置坐标数组
         city_zb[:, 0] = city_x / 100
         city_zb[:, 1] = city_y / 100
+    else:
+        city_zb = city_zb(50, 50, city_num)
+        n = city_num
+
+    # city_files = st.text_input("输入具体路径的数据文件,如为空则利用随机数据进行计算", value="")
+    # if city_files == "":
+    # city_zb = city_zb(50, 50, city_num)
+    # n = city_num
+    # else:
+    # 读入城市坐标
+    # DF = pd.read_excel(
+    # city_files, "Sheet1", na_filter=False, index_col=0
+    # )  # 共有31个城市坐标
+    # city_x = np.array(DF["x"])  # 数据分配
+    # city_y = np.array(DF["y"])
+    # n = len(city_x)  # 计算城市的数目
+    # city_zb = np.zeros((n, 2))  # 设置坐标数组
+    # city_zb[:, 0] = city_x / 100
+    # city_zb[:, 1] = city_y / 100
+
     # 计算坐标起始范围：
     x_min = min(city_zb[:, 0])
     x_max = max(city_zb[:, 0])
