@@ -1266,9 +1266,9 @@ elif add_selectbox == "蚁群算法求解TSP问题":
 
     st.write("加载具体路径的数据文件csv,三列结构，第一列城市名称，第二列为x坐标，第三列为y坐标；如不加载则利用随机数据进行计算", value="")
     # 读入城市坐标
-    uploaded_file = st.file_uploader("Choose a file")
-    if uploaded_file is not None:
-        dataframe = pd.read_csv(uploaded_file)
+    uploaded_file2 = st.file_uploader("Choose a file")
+    if uploaded_file2 is not None:
+        dataframe = pd.read_csv(uploaded_file2)
         array_d = np.array(dataframe)
         # 共有31个城市坐标
         city_x = array_d[:, 1]  # 数据分配
@@ -1303,7 +1303,7 @@ elif add_selectbox == "蚁群算法求解TSP问题":
     y_min = min(city_zb[:, 1])
     y_max = max(city_zb[:, 1])
     # 定义绘制路径图函数
-    n = len(city_zb)
+    # n = len(city_zb)
 
     def Distance(city_zb):
         D = np.zeros((n, n))  #  产生两城市之间距离数据的空矩阵即零阵
