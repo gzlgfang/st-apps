@@ -26,4 +26,4 @@ with col3:
     st.header("   异木棉")
     st.image(image3)
 
-# streamlit run g:/st_image.py
+# streamlit run g:/st-app/st_image1.py
