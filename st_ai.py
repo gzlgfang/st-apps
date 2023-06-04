@@ -9,6 +9,7 @@ from scipy import optimize
 import copy
 from numpy.core.fromnumeric import cumsum
 
+# streamlit run g:\st-app\st_ai.py
 # https://share.streamlit.io/gzlgfang/st-apps/main/st_ai.py
 mpl.rcParams["font.sans-serif"] = ["SimHei"]  # 保证显示中文字
 mpl.rcParams["axes.unicode_minus"] = False  # 保证负号显示
@@ -1261,7 +1262,7 @@ elif add_selectbox == "蚁群算法求解TSP问题":
         city_num = st.number_input("输入随机城市数目，随机计算时使用", value=30, step=1, format="%d")
     with col2:
         B = st.number_input("是否回起点,是1,否0", value=1, step=1, format="%d")
-    city_num = 20
+    # city_num = 20
     # city_num = st.number_input("输入随机城市数目，随机计算时使用", value=30, step=1, format="%d")
     st.write("加载具体路径的数据文件csv,三列结构，第一列城市名称，第二列为x坐标，第三列为y坐标；如不加载则利用随机数据进行计算", value="")
     # 读入城市坐标
