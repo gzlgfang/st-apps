@@ -3,5 +3,6 @@ scipy
 matplotlib
 future
 pandas
+python 3.7
 #turtle
 #fipy
