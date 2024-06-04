@@ -198,6 +198,17 @@ with st.form("my_form"):
         )  # 前面题目，后面4个选项
         if select == str_test[k][answer[k]]:  # 这里填正确答案,目前题目从0-1199
             n = n + 1
+    str_k = "第" + str(11) + "题"
+    st.subheader(str_k)
+
+    options = st.multiselect(
+        "环境安全隐患排查中常说的“三口一池”是指",
+        ["初期雨水池", "环境事故应急池", "围堰等设施场所的排水管道口", "企业污水总排口", "企业雨水总排口", "企业设备冷凝水总排口"],
+    )
+    if options == ["环境事故应急池", "围堰等设施场所的排水管道口"]:
+        n = n + 1
+
+    st.write("You selected:", options)
     submitted = st.form_submit_button("点击提交")
     if submitted:
 
