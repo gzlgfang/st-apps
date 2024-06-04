@@ -15,7 +15,7 @@ mpl.rcParams["xtick.top"] = True
 mpl.rcParams["xtick.direction"] = "in"  # 坐标轴上的短线朝内，默认朝外
 mpl.rcParams["ytick.direction"] = "in"
 
-# https://gzlgfang-st-apps/
+# https://gzlgfang-st-apps/EEtest-st-spp
 
 # streamlit  run "g:/st-app/EEtest.py"
 
