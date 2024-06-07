@@ -260,7 +260,7 @@ st.text("本软件代码由方利国开发")
 st.text("发现错误之处请联系lgfang@scut.edu.cn,不胜感谢。")
 st.text("点击左上方的>可以选择考试内容")
 name = st.text_input("请输入您的姓名", "张三")
-dt = datetime.datetime.now() + datetime.timedelta(hours=8)
+dt = datetime.datetime.now() + datetime.timedelta(hours=8, minutes=4, seconds=-22)
 st.subheader("当前时间" + str(dt))
 
 with st.form("my_form"):
@@ -386,7 +386,9 @@ with st.form("my_form"):
         plt.title("Question Answering Correct and Mistake Rate Chart")
 
         st.pyplot(fig)
-        dt = datetime.datetime.now() + datetime.timedelta(hours=8)
+        dt = datetime.datetime.now() + datetime.timedelta(
+            hours=8, minutes=4, seconds=-22
+        )
         st.subheader("当前时间" + str(dt))
         str_finsh1 = str_finsh + "请截屏成绩发给指定人员或地址"
         sstr = (
