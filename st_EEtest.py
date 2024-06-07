@@ -14,7 +14,7 @@ mpl.rcParams["ytick.right"] = True
 mpl.rcParams["xtick.top"] = True
 mpl.rcParams["xtick.direction"] = "in"  # 坐标轴上的短线朝内，默认朝外
 mpl.rcParams["ytick.direction"] = "in"
-
+global h, interval, m, s, h_s
 # https://gzlgfang-st-apps/EEtest-st-spp
 
 # streamlit  run "g:/st-app/st_EEtest.py"
@@ -229,19 +229,28 @@ if add_selectbox == "隐患排查与治理":
     name_test = "隐患排查与治理"
     sel_no = 1
     test_num = 18
+elif add_selectbox == "各类标准":
+    name_test = "各类标准"
+    sel_no = 2
+    test_num = 18
 elif add_selectbox == "法律法规":
     name_test = "法律法规"
     sel_no = 2
     test_num = 18
+
+
 elif add_selectbox == "信访回复":
     name_test = "信访回复"
-    sel_no = 3
+    sel_no = 2
+    test_num = 18
 elif add_selectbox == "检测与争议":
     name_test = "检测与争议"
-    sel_no = 4
+    sel_no = 2
+    test_num = 18
 elif add_selectbox == "综合":
     name_test = "综合"
-    sel_no = 5
+    sel_no = 2
+    test_num = 18
 
 
 # step=1#调试用
@@ -254,6 +263,38 @@ st.text("点击左上方的>可以选择考试内容")
 name = st.text_input("请输入您的姓名", "张三")
 dt = datetime.datetime.now() + datetime.timedelta(hours=8, minutes=4, seconds=-22)
 st.subheader("当前时间" + str(dt))
+
+if "time1" not in st.session_state:
+    st.session_state.time1 = None
+if "time2" not in st.session_state:
+    st.session_state.time2 = None
+
+# 按钮
+if st.button("请在开始答题时点击我，做完题目再点击一次，马上点击提交"):
+    # 如果time1是空的，记录第一次点击的时间
+    if st.session_state.time1 is None:
+        st.session_state.time1 = time.time()
+        # datetime.now()
+        # st.write("记录第一次点击的时间: ", st.session_state.time1)
+    # 否则记录第二次点击的时间，并计算时间间隔
+    elif st.session_state.time2 is None:
+        st.session_state.time2 = time.time()
+        # datetime.now()
+        interval = st.session_state.time2 - st.session_state.time1
+        # st.write("记录第二次点击的时间: ", st.session_state.time2)
+        h = interval // 3600  ##计算小时
+        h_s = interval % 3600
+        m = h_s // 60  ##计算分钟
+        s = h_s % 60  ##计算秒
+        # str_time = "考试用时" + str(time_use) + "秒"
+        # st.subheader(str_time)
+        st.write("本次答题时间为: ", h, "小时", m, "分钟", s, "秒")
+        st.subheader("本次答题时间为:" + str(interval) + "秒,请截屏保存，并马上点击后面的提交按钮")
+
+        # 重置时间记录，准备下一次计时
+        st.session_state.time1 = None
+        st.session_state.time2 = None
+
 
 with st.form("my_form"):
     for i in range(test_num):
@@ -316,17 +357,19 @@ with st.form("my_form"):
     if submitted:
 
         # end_time = time.time()
-        end_time = time.process_time()
-        time_use = end_time - start_time
+        # end_time = time.process_time()
+        # time_use = end_time - start_time
         # con_num=1
         str_finsh = "欢迎您" + name + ",已完成考试,试卷内容为" + name_test
         st.subheader(str_finsh)
-        str_time = "考试用时" + str(time_use) + "秒"
-        st.subheader(str_time)
+        # str_time = "考试用时" + str(time_use) + "秒"
+        # st.subheader(str_time)
         # for i in range(num):
         # k=test_num[i]
         # if select ==str_test[k][answer[k-100]] :  #这里填正确答案,目前题目从100 199
         # n=n+1
+        # st.write("本次答题时间为: ", h, "小时", m, "分钟", s, "秒")
+        # st.subheader("本次答题时间为:" + str(interval) + "秒")
         if n / num > 0.9:
             str_n = str(n)
             sstr = (
