@@ -330,8 +330,7 @@ with st.form("my_form"):
         str_finsh = "欢迎您" + name + ",已完成考试,试卷内容为" + name_test
         st.subheader(str_finsh)
         str_time = "考试用时" + str(time_use) + "秒"
-
-        # st.subheader(str_time)
+        st.subheader(str_time)
         # for i in range(num):
         # k=test_num[i]
         # if select ==str_test[k][answer[k-100]] :  #这里填正确答案,目前题目从100 199
