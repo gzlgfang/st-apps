@@ -229,6 +229,7 @@ if add_selectbox == "隐患排查与治理":
     name_test = "隐患排查与治理"
     sel_no = 1
     test_num = 18
+    # st.subheader("本次答题内容为隐患排查与治理")
 elif add_selectbox == "各类标准":
     name_test = "各类标准"
     sel_no = 2
@@ -255,10 +256,11 @@ elif add_selectbox == "综合":
 
 # step=1#调试用
 st.header("基层生态环境工作人员培训知识考试")
+str_testname = "本次考试内容为" + add_selectbox
+st.subheader(str_testname)
 st.subheader("点击左上角的→可选择考试内容")
 
-st.text("本软件代码由方利国开发")
-st.text("发现错误之处请联系lgfang@scut.edu.cn,不胜感谢。")
+st.text("本软件代码由方利国开发,发现错误之处请联系lgfang@scut.edu.cn,不胜感谢。")
 st.text("点击左上方的>可以选择考试内容")
 name = st.text_input("请输入您的姓名", "张三")
 dt = datetime.datetime.now() + datetime.timedelta(hours=8, minutes=4, seconds=-22)
