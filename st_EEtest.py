@@ -263,7 +263,7 @@ st.subheader("点击左上角的→可选择考试内容")
 st.text("本软件代码由方利国开发,发现错误之处请联系lgfang@scut.edu.cn,不胜感谢。")
 st.text("点击左上方的>可以选择考试内容")
 name = st.text_input("请输入您的姓名", "张三")
-dt = datetime.datetime.now() + datetime.timedelta(hours=8, minutes=4, seconds=-22)
+dt = datetime.datetime.now() + datetime.timedelta(hours=8, minutes=0, seconds=-22)
 st.subheader("当前时间" + str(dt))
 
 if "time1" not in st.session_state:
